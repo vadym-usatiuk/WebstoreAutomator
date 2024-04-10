@@ -36,19 +36,19 @@ public class RestaurantStoreTest {
         boolean testPassed = false;
         try {
             driver.get("https://www.webstaurantstore.com/");
-            Thread.sleep(1000);
+//            Thread.sleep(1000);
 
             webStoreMainPage.searchBar.sendKeys("stainless work table");
-            Thread.sleep(1000);
+//            Thread.sleep(1000);
             webStoreMainPage.searchBar.submit();
 
             wait.until(ExpectedConditions.visibilityOfAllElements(webStoreMainPage.searchResult));
-            Thread.sleep(1000);
+//            Thread.sleep(1000);
 
             for (WebElement item : webStoreMainPage.searchResult) {
                 Assertions.assertTrue(item.getText().contains("Table"), "Item does not contain 'Table'");
             }
-            Thread.sleep(1000);
+//            Thread.sleep(1000);
 
             if (webStoreMainPage.addToCart.isEmpty()) {
                 throw new IllegalStateException("No Add to Cart buttons found");
@@ -56,7 +56,7 @@ public class RestaurantStoreTest {
 
             WebElement lastAddToCartButton = webStoreMainPage.addToCart.get(webStoreMainPage.addToCart.size() - 1);
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", lastAddToCartButton);
-            Thread.sleep(1000);
+//            Thread.sleep(1000);
 
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", lastAddToCartButton);
             Thread.sleep(1000);
@@ -78,10 +78,6 @@ public class RestaurantStoreTest {
                 System.out.println("Test completed successfully.");
             } else {
                 System.out.println("Test failed.");
-            }
-            Thread.sleep(1000);
-            if (driver != null) {
-                driver.quit();
             }
         }
     }
